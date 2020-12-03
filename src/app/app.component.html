@@ -1,1 +1,38 @@
-<h1>Ziv</h1>
+<p-confirmPopup></p-confirmPopup>
+<div class="wrapper">
+  <div class="center" >
+    <p-toolbar >
+      <div class="p-toolbar-group-left">
+        <p-button label="הוסף מגע" icon="pi pi-plus" (click)="add()"></p-button>
+
+      </div>
+
+      <div class="p-toolbar-group-right">
+        <p-button label="מחק את כל המגעים" icon="pi pi-trash" styleClass="p-button-danger" (click)="clear($event)"></p-button>
+        <p-button label="שמור לקובץ excel" icon="pi pi-save" styleClass="p-button-success" (click)="saveToExcel()"></p-button>
+      </div>
+    </p-toolbar>
+
+    <ag-grid-angular
+      style="maxWidth: 1020px; height: 500px;"
+      class="ag-theme-alpine"
+      [enableRtl]="true"
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+      [frameworkComponents]="frameworkComponents"
+      [defaultColDef]="defaultColDef"
+      (gridReady)="onGridReady($event)"
+
+
+    >
+    </ag-grid-angular>
+  </div>
+
+</div>
+
+
+
+
+
+
+

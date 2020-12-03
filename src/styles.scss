@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
+@import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
+
+body {
+  direction: rtl;
+}
+.ag-cell-focus, .ag-cell {
+  border: none !important;
+}
+
+.p-button {
+  flex-direction: row-reverse;
+}
+
+.p-confirm-popup .p-confirm-popup-content {
+  flex-direction: row-reverse;
+}
+
+.p-confirm-popup-footer {
+}
+.p-confirm-popup .p-confirm-popup-footer {
+  text-align: left;
+}
+
+.reject-button {
+  margin-left: 5px!important;
+  background-color: #97bf97;
+}
+
+.accept-button {
+  background-color: #bf9b97;
+}
+
+.p-toolbar  {
+  max-width: 1020px;
+  margin-bottom: 10px;
+}
+
+.p-dialog .p-dialog-content {
+  padding-bottom: 0;
+}

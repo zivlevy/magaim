@@ -1,0 +1,53 @@
+<form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()" dir="rtl">
+  <div class="card">
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12 p-md-6">
+        <label for="name">שם פרטי</label>
+        <input id="name" type="text" formControlName="firstName" pInputText>
+        <small *ngIf="dynamicForm.controls.firstName?.errors && submitted"  class="p-invalid">נדרש להזין שם פרטי</small>
+      </div>
+
+      <div class="p-field p-col-12 p-md-6">
+        <label for="lastname">שם משפחה</label>
+        <input id="lastname" type="text" formControlName="lastName" pInputText>
+        <small *ngIf="dynamicForm.controls.lastName?.errors && submitted"  class="p-invalid">נדרש להזין שם משפחה</small>
+      </div>
+
+      <div class="p-field p-col-12 p-md-6">
+        <label for="tztype">סוג ת.ז</label>
+        <p-dropdown id="tztype"  formControlName="tzType" #dd [options]="tzTypOptions"></p-dropdown>
+      </div>
+
+      <div class="p-field p-col-12 p-md-6">
+        <label for="tz">ת.ז</label>
+        <input id="tz" type="text" formControlName="tz" pInputText>
+        <small *ngIf="dynamicForm.controls.tz?.errors?.required && submitted"  class="p-invalid">נדרש להזין מספר תעודה</small>
+        <small *ngIf="dynamicForm.controls.tz?.errors?.tzInvalid && submitted"  class="p-invalid">יש להזין מספר זהות תקין בן 9 ספרות, הכולל ספרת ביקורת</small>
+      </div>
+
+      <div class="p-field p-col-12 p-md-6">
+        <label for="phone">מספר טלפון</label>
+        <input id="phone" type="text" formControlName="phone" pInputText>
+        <small *ngIf="dynamicForm.controls.phone?.errors?.required && submitted"  class="p-invalid">נדרש להזין מספר טלפון</small>
+        <small *ngIf="dynamicForm.controls.phone?.errors?.pattern && submitted"  class="p-invalid">מספר הטלפון שגוי</small>
+      </div>
+
+      <div class="p-field p-col-12 p-md-6">
+        <label for="phoneSec">טלפון משני</label>
+        <input id="phoneSec" type="text" formControlName="phoneSec" pInputText>
+        <small *ngIf="dynamicForm.controls.phoneSec?.errors?.pattern && submitted"  class="p-invalid">יש להזין מספר טלפון בן 9 או 10 ספרות</small>
+      </div>
+
+      <div class="p-field p-col-12 p-md-6">
+        <label for="city">יישוב השהייה בבידוד</label>
+        <input id="city" hidden="true">
+        <p-autoComplete formControlName="city" [suggestions]="filteredCities" (completeMethod)="filterCities($event)" field="city" [minLength]="1" [forceSelection]="true"></p-autoComplete>
+        <small *ngIf="dynamicForm.controls.city?.errors?.required && submitted"  class="p-invalid">נדרש להזין יישוב</small>
+      </div>
+
+      <div class="p-field p-col-12 p-md-12 p-mt-6">
+        <button pButton pRipple type="button" label="שמירה" class="p-button-outlined" type="submit"></button>
+      </div>
+    </div>
+  </div>
+</form>
