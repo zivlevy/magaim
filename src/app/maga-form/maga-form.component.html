@@ -1,27 +1,30 @@
 <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()" dir="rtl">
   <div class="card">
     <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12 p-md-12">
+        <label class="explain1">שדות המסומנים בכוכבית (*) הם שדות חובה</label>
+      </div>
       <div class="p-field p-col-12 p-md-6">
-        <label for="name">שם פרטי</label>
+        <label for="name"  class="require">שם פרטי</label>
         <input id="name" type="text" formControlName="firstName" pInputText>
         <small *ngIf="dynamicForm.controls.firstName?.errors?.required && submitted"  class="p-invalid">נדרש להזין שם פרטי</small>
         <small *ngIf="dynamicForm.controls.firstName?.errors?.pattern && submitted"  class="p-invalid">יש להזין אותיות בעברית,אנגלית ללא תווים אחרים</small>
       </div>
 
       <div class="p-field p-col-12 p-md-6">
-        <label for="lastname">שם משפחה</label>
+        <label class="require" for="lastname">שם משפחה</label>
         <input id="lastname" type="text" formControlName="lastName" pInputText>
         <small *ngIf="dynamicForm.controls.lastName?.errors?.required && submitted"  class="p-invalid">נדרש להזין שם משפחה</small>
         <small *ngIf="dynamicForm.controls.lastName?.errors?.pattern && submitted"  class="p-invalid">יש להזין אותיות בעברית,אנגלית ללא תווים אחרים</small>
       </div>
 
       <div class="p-field p-col-12 p-md-6">
-        <label for="tztype">סוג ת.ז</label>
+        <label for="tztype"  class="require">סוג ת.ז</label><span class="p-badge" pTooltip="על אזרח ישראלי לבחור בתעודת זהות">?</span>
         <p-dropdown id="tztype"  formControlName="tzType" #dd [options]="tzTypOptions"></p-dropdown>
       </div>
 
       <div class="p-field p-col-12 p-md-6">
-        <label for="tz">ת.ז</label>
+        <label class="require"  for="tz">ת.ז</label><span class="p-badge" pTooltip="לת.ז יש להזין 9 ספרות כולל ספרת ביקורת">?</span>
         <input id="tz" type="text" formControlName="tz" pInputText>
         <small *ngIf="dynamicForm.controls.tz?.errors?.required && submitted"  class="p-invalid">נדרש להזין מספר תעודה</small>
         <small *ngIf="dynamicForm.controls.tz?.errors?.tzInvalid && submitted"  class="p-invalid">יש להזין מספר זהות תקין בן 9 ספרות, הכולל ספרת ביקורת</small>
@@ -30,20 +33,20 @@
 
 
       <div class="p-field p-col-12 p-md-6">
-        <label for="phone">מספר טלפון</label>
+        <label for="phone"  class="require">מספר טלפון</label><span class="p-badge" pTooltip="יש להזין מספר טלפון בן 9 או 10 ספרות ללא תווים נוספים לדוגמא: 050123456">?</span>
         <input id="phone" type="text" formControlName="phone" pInputText>
         <small *ngIf="dynamicForm.controls.phone?.errors?.required && submitted"  class="p-invalid">נדרש להזין מספר טלפון</small>
-        <small *ngIf="dynamicForm.controls.phone?.errors?.pattern && submitted"  class="p-invalid">מספר הטלפון שגוי</small>
+        <small *ngIf="dynamicForm.controls.phone?.errors?.pattern && submitted"  class="p-invalid">יש להזין מספר טלפון בן 9 או 10 ספרות, ללא תווים נוספים</small>
       </div>
 
       <div class="p-field p-col-12 p-md-6">
-        <label for="phoneSec">טלפון משני</label>
+        <label for="phoneSec">טלפון משני</label><span class="p-badge" pTooltip="יש להזין מספר טלפון בן 9 או 10 ספרות ללא תווים נוספים לדוגמא: 050123456">?</span>
         <input id="phoneSec" type="text" formControlName="phoneSec" pInputText>
-        <small *ngIf="dynamicForm.controls.phoneSec?.errors?.pattern && submitted"  class="p-invalid">יש להזין מספר טלפון בן 9 או 10 ספרות</small>
+        <small *ngIf="dynamicForm.controls.phoneSec?.errors?.pattern && submitted"  class="p-invalid">יש להזין מספר טלפון בן 9 או 10 ספרות, ללא תווים נוספים</small>
       </div>
 
       <div class="p-field p-col-12 p-md-6">
-        <label for="city">יישוב השהייה בבידוד</label>
+        <label for="city"  class="require">יישוב השהייה בבידוד</label><span class="p-badge" pTooltip="יש להתחיל להקליד שם יישוב ולבחור את השם המדוייק מן הרשימה">?</span>
         <input id="city" hidden="true">
         <p-autoComplete formControlName="city" [suggestions]="filteredCities" (completeMethod)="filterCities($event)" field="city" [minLength]="1" [forceSelection]="true"></p-autoComplete>
         <small *ngIf="dynamicForm.controls.city?.errors?.required && submitted"  class="p-invalid">נדרש להזין יישוב</small>

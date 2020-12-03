@@ -1,3 +1,24 @@
 #city {
   opacity: 0;
 }
+
+.require:before{
+  content: '*';
+  color: #a01515;
+}
+
+
+.explain1 {
+  font-size: 14px;
+}
+
+.p-badge {
+  line-height: .9rem;
+  height: .9rem;
+  min-width:.9rem;
+  margin-right: 3px;
+  background-color: white;
+  border: 1px solid #275C7E;
+  font-size: 12px;
+  color:#275C7E;
+}

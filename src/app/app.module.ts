@@ -17,6 +17,7 @@ import {SelectButtonModule} from 'primeng/selectbutton';
 import {NgxWebstorageModule} from 'ngx-webstorage';
 import {ToolbarModule} from 'primeng/toolbar';
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
+import {TooltipModule} from 'primeng/tooltip';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import {ConfirmPopupModule} from 'primeng/confirmpopup';
     AppRoutingModule,
     ToolbarModule,
     ConfirmPopupModule,
+    TooltipModule,
     NgxWebstorageModule.forRoot(),
 
   ],
