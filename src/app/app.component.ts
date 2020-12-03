@@ -40,7 +40,7 @@ export class AppComponent {
       {headerName: 'שם פרטי', field: 'firstName', editable: false, width: 120},
       {headerName: 'שם משפחה', field: 'lastName', editable: false, width: 120},
       {headerName: 'סוג ת.ז', field: 'tzType', editable: false, width: 90},
-      {headerName: 'ת.ז', field: 'tz', editable: false, width: 110},
+      {headerName: 'ת.ז', field: 'tz', editable: false, width: 120},
       {headerName: 'מספר טלפון', field: 'phone', editable: false, width: 130},
       {headerName: 'טלפון משני', field: 'phoneSec', editable: false, width: 130},
       {headerName: 'ישוב השהיה בבידוד', field: 'city', editable: false, width: 160},
@@ -50,7 +50,7 @@ export class AppComponent {
         cellRendererParams: {
           onClick: this.onEditButtonClick.bind(this),
         },
-        width: 100
+        width: 90
       }
     ];
     this.defaultColDef = {resizable: false};
@@ -74,6 +74,7 @@ export class AppComponent {
   add(): void {
     const data = {
       isNew: true,
+      currentRows: [...this.rowData]
     };
     const ref = this.dialogService.open(MagaFormComponent, {
       data,
@@ -96,6 +97,7 @@ export class AppComponent {
   edit(maga): void {
     const data = {
       isNew: false,
+      currentRows: [...this.rowData],
       maga
     };
     const ref = this.dialogService.open(MagaFormComponent, {
@@ -190,6 +192,7 @@ export class AppComponent {
       'ת.ז',
       'מספר טלפון',
       'טלפון משני',
+      'סוג מגע',
       'פירוט נוסף על אופי המגע',
       'קרבה משפחתית',
       'קשר',
@@ -215,7 +218,7 @@ export class AppComponent {
       temp.push(r.tz);
       temp.push(r.phone);
       temp.push(r.phoneSec);
-      temp.push('');
+      temp.push('הדוק');
       temp.push('');
       temp.push('');
       temp.push('');

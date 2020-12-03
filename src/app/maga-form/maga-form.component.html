@@ -4,13 +4,15 @@
       <div class="p-field p-col-12 p-md-6">
         <label for="name">שם פרטי</label>
         <input id="name" type="text" formControlName="firstName" pInputText>
-        <small *ngIf="dynamicForm.controls.firstName?.errors && submitted"  class="p-invalid">נדרש להזין שם פרטי</small>
+        <small *ngIf="dynamicForm.controls.firstName?.errors?.required && submitted"  class="p-invalid">נדרש להזין שם פרטי</small>
+        <small *ngIf="dynamicForm.controls.firstName?.errors?.pattern && submitted"  class="p-invalid">יש להזין אותיות בעברית,אנגלית ללא תווים אחרים</small>
       </div>
 
       <div class="p-field p-col-12 p-md-6">
         <label for="lastname">שם משפחה</label>
         <input id="lastname" type="text" formControlName="lastName" pInputText>
-        <small *ngIf="dynamicForm.controls.lastName?.errors && submitted"  class="p-invalid">נדרש להזין שם משפחה</small>
+        <small *ngIf="dynamicForm.controls.lastName?.errors?.required && submitted"  class="p-invalid">נדרש להזין שם משפחה</small>
+        <small *ngIf="dynamicForm.controls.lastName?.errors?.pattern && submitted"  class="p-invalid">יש להזין אותיות בעברית,אנגלית ללא תווים אחרים</small>
       </div>
 
       <div class="p-field p-col-12 p-md-6">
@@ -23,7 +25,9 @@
         <input id="tz" type="text" formControlName="tz" pInputText>
         <small *ngIf="dynamicForm.controls.tz?.errors?.required && submitted"  class="p-invalid">נדרש להזין מספר תעודה</small>
         <small *ngIf="dynamicForm.controls.tz?.errors?.tzInvalid && submitted"  class="p-invalid">יש להזין מספר זהות תקין בן 9 ספרות, הכולל ספרת ביקורת</small>
+        <small *ngIf="dynamicForm.controls.tz?.errors?.tzDupInvalid && submitted"  class="p-invalid">מספר תעודת הזהות הזה כבר קיים ברשימה</small>
       </div>
+
 
       <div class="p-field p-col-12 p-md-6">
         <label for="phone">מספר טלפון</label>
