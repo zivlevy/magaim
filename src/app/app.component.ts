@@ -223,7 +223,7 @@ export class AppComponent {
       temp.push('');
       temp.push('');
       temp.push(r.city);
-      temp.push('');
+      temp.push('המגע הונחה לשהות בבידוד');
       temp.push('');
       temp.push('');
       temp.push('');
