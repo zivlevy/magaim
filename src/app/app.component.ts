@@ -203,10 +203,12 @@ export class AppComponent {
       'האם חש בטוב',
       'האם סובל ממחלות רקע',
       'האם חי באותו הבית עם המאומת',
-        'מפגש חוזר עם המאומת',
+      'מפגש חוזר עם המאומת',
       'עבודה עם קהל במסגרת העבודה',
       'האם עוסק באחד מן התחומים הבאים',
       'האם נדרש סיוע עבור מקום בידוד'];
+
+
     const heaerRow = worksheet.addRow(header);
     this.rowData.forEach((r: Maga) => {
       const temp = [];
@@ -235,6 +237,15 @@ export class AppComponent {
       temp.push(null);
       temp.push(null);
       worksheet.addRow(temp);
+    });
+
+    // set cell type to text
+    const cells = [4, 5, 6, 7, 8, 9, 11, 15];
+    cells.forEach(c => {
+      const cell = worksheet.getColumn(c);
+      cell.eachCell((cll, rowNumber) => {
+        cll.numFmt = '@';
+      });
     });
 
     // set downloadable file name
