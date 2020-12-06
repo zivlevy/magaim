@@ -192,6 +192,7 @@ export class AppComponent {
       'ת.ז',
       'מספר טלפון',
       'טלפון משני',
+      'תאריך לידה',
       'סוג מגע',
       'פירוט נוסף על אופי המגע',
       'קרבה משפחתית',
@@ -209,29 +210,30 @@ export class AppComponent {
     const heaerRow = worksheet.addRow(header);
     this.rowData.forEach((r: Maga) => {
       const temp = [];
-      temp.push('');
-      temp.push('');
-      temp.push('');
+      temp.push(null);
+      temp.push(null);
+      temp.push(null);
       temp.push(r.firstName);
       temp.push(r.lastName);
       temp.push(r.tzType);
       temp.push(r.tz);
       temp.push(r.phone);
       temp.push(r.phoneSec);
+      temp.push(null);
       temp.push('הדוק');
-      temp.push('');
-      temp.push('');
-      temp.push('');
+      temp.push(null);
+      temp.push(null);
+      temp.push(null);
       temp.push(r.city);
-      temp.push('');
-      temp.push('');
-      temp.push('');
-      temp.push('');
-      temp.push('');
-      temp.push('');
-      temp.push('');
-      temp.push('');
-      temp.push('');
+      temp.push(null);
+      temp.push(null);
+      temp.push(null);
+      temp.push(null);
+      temp.push(null);
+      temp.push(null);
+      temp.push(null);
+      temp.push(null);
+      temp.push(null);
       worksheet.addRow(temp);
     });
 

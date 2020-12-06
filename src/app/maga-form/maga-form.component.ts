@@ -26,7 +26,7 @@ export class MagaFormComponent implements OnInit, OnDestroy {
   currentRows = [];
 
   tzTypOptions = [
-    {label: 'ת.ז', value: 'ת.ז'},
+    {label: 'ת״ז', value: 'ת״ז'},
     {label: 'דרכון', value: 'דרכון'}
 
   ];
@@ -47,7 +47,7 @@ export class MagaFormComponent implements OnInit, OnDestroy {
       defaultCity = {city: this.maga.city};
 
     } else {
-      this.maga = {tzType: 'ת.ז', uuid: uuidv4()};
+      this.maga = {tzType: 'ת״ז', uuid: uuidv4()};
 
     }
 
@@ -118,7 +118,7 @@ export class MagaFormComponent implements OnInit, OnDestroy {
       return null;
     }
 
-  };
+  }
   tzValidator = (control: AbstractControl): { [key: string]: boolean } | null => {
     if (!this.dynamicForm) {
       return null;
@@ -135,7 +135,7 @@ export class MagaFormComponent implements OnInit, OnDestroy {
       };
       return null;
     }
-  };
+  }
 
 
   is_israeli_id_number(id): any {
@@ -144,7 +144,7 @@ export class MagaFormComponent implements OnInit, OnDestroy {
       return false;
     }
     id = id.length < 9 ? ('00000000' + id).slice(-9) : id;
-    let res = Array.from(id, Number).reduce((counter, digit, i) => {
+    const res = Array.from(id, Number).reduce((counter, digit, i) => {
       const step = digit * ((i % 2) + 1);
       return counter + (step > 9 ? step - 9 : step);
     });
