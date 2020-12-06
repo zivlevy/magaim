@@ -60,12 +60,12 @@ export class AppComponent {
     }
   }
 
-  onGridReady(params) {
+  onGridReady(params): void {
     this.api = params.api;
 
   }
 
-  onFirstDataRendered(params) {
+  onFirstDataRendered(params): void {
     params.api.sizeColumnsToFit();
   }
 
