@@ -82,12 +82,17 @@ export class AppComponent {
       width: '600px'
     });
 
-    ref.onClose.subscribe((user) => {
-      if (user) {
+    ref.onClose.subscribe((res) => {
+      if (res) {
+        const user = res.user;
+        const addNew = res.addNew;
         user.city = user.city.city;
         this.rowData.push(user);
         this.rowData = [...this.rowData];
         this.storage.store('maga', this.rowData);
+        if (addNew) {
+          this.add();
+        }
       }
 
     });
@@ -106,7 +111,8 @@ export class AppComponent {
       width: '600px'
     });
 
-    ref.onClose.subscribe((user) => {
+    ref.onClose.subscribe((res) => {
+      const user = res.user;
       if (user) {
         user.city = user.city.city;
         this.rowData.forEach((m, index) => {
@@ -227,7 +233,7 @@ export class AppComponent {
       temp.push(null);
       temp.push(null);
       temp.push(r.city);
-      temp.push(null);
+      temp.push('המגע הונחה לשהות בבידוד');
       temp.push(null);
       temp.push(null);
       temp.push(null);

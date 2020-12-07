@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Subject} from 'rxjs';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DynamicDialogConfig, DynamicDialogRef} from 'primeng/dynamicdialog';
@@ -12,7 +12,8 @@ import {v4 as uuidv4} from 'uuid';
   templateUrl: './maga-form.component.html',
   styleUrls: ['./maga-form.component.scss']
 })
-export class MagaFormComponent implements OnInit, OnDestroy {
+export class MagaFormComponent implements OnInit, OnDestroy, AfterViewInit {
+  @ViewChild('nameEl') nameElement: ElementRef;
   destroy$: Subject<boolean> = new Subject<boolean>();
   dynamicForm: FormGroup;
   submitted = false;
@@ -26,10 +27,11 @@ export class MagaFormComponent implements OnInit, OnDestroy {
   currentRows = [];
 
   tzTypOptions = [
-    {label: 'ת״ז', value: 'ת״ז'},
+    {label: 'ת"ז', value: 'ת"ז'},
     {label: 'דרכון', value: 'דרכון'}
 
   ];
+
 
   constructor(public ref: DynamicDialogRef,
               public config: DynamicDialogConfig,
@@ -37,7 +39,12 @@ export class MagaFormComponent implements OnInit, OnDestroy {
               private magaService: MagaService) {
   }
 
+  ngAfterViewInit(): void {
+    this.nameElement.nativeElement.focus();
+  }
+
   ngOnInit(): void {
+
     this.magaService.getCountries().then(cities => this.cities = cities);
     this.isNew = this.config.data.isNew;
     this.currentRows = this.config.data.currentRows;
@@ -47,7 +54,7 @@ export class MagaFormComponent implements OnInit, OnDestroy {
       defaultCity = {city: this.maga.city};
 
     } else {
-      this.maga = {tzType: 'ת״ז', uuid: uuidv4()};
+      this.maga = {tzType: 'ת"ז', uuid: uuidv4()};
 
     }
 
@@ -69,14 +76,15 @@ export class MagaFormComponent implements OnInit, OnDestroy {
     return this.dynamicForm.controls;
   }
 
-  onSubmit(): void {
+  onSubmit(addNew): void {
     this.submitted = true;
 
     // stop here if form is invalid
     if (this.dynamicForm.invalid) {
       return;
     }
-    this.ref.close(this.dynamicForm.value);
+    console.log(addNew)
+    this.ref.close({addNew, user: this.dynamicForm.value});
   }
 
   onReset(): void {
@@ -118,7 +126,7 @@ export class MagaFormComponent implements OnInit, OnDestroy {
       return null;
     }
 
-  }
+  };
   tzValidator = (control: AbstractControl): { [key: string]: boolean } | null => {
     if (!this.dynamicForm) {
       return null;
@@ -135,7 +143,7 @@ export class MagaFormComponent implements OnInit, OnDestroy {
       };
       return null;
     }
-  }
+  };
 
 
   is_israeli_id_number(id): any {

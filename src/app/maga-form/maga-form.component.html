@@ -1,4 +1,4 @@
-<form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()" dir="rtl">
+<form [formGroup]="dynamicForm"  dir="rtl">
   <div class="card">
     <div class="p-fluid p-formgrid p-grid">
       <div class="p-field p-col-12 p-md-12">
@@ -6,7 +6,7 @@
       </div>
       <div class="p-field p-col-12 p-md-6">
         <label for="name"  class="require">שם פרטי</label>
-        <input id="name" type="text" formControlName="firstName" pInputText>
+        <input id="name" type="text" formControlName="firstName" #nameEl pInputText>
         <small *ngIf="dynamicForm.controls.firstName?.errors?.required && submitted"  class="p-invalid">נדרש להזין שם פרטי</small>
         <small *ngIf="dynamicForm.controls.firstName?.errors?.pattern && submitted"  class="p-invalid">יש להזין אותיות בעברית,אנגלית ללא תווים אחרים</small>
       </div>
@@ -52,8 +52,15 @@
         <small *ngIf="dynamicForm.controls.city?.errors?.required && submitted"  class="p-invalid">נדרש להזין יישוב</small>
       </div>
 
-      <div class="p-field p-col-12 p-md-12 p-mt-6">
-        <button pButton pRipple type="button" label="שמירה" class="p-button-outlined" type="submit"></button>
+      <div class="p-field p-col-12 p-md-12 p-mt-6" *ngIf="!isNew">
+        <button pButton pRipple type="button" label="שמירה" class="p-button-outlined" type="submit" (click)="onSubmit(false)"></button>
+      </div>
+
+      <div class="p-field p-col-12 p-md-12 p-mt-3" *ngIf="isNew">
+        <button pButton pRipple type="button" label="שמירה" class="p-button-outlined" type="submit" (click)="onSubmit(false)"></button>
+      </div>
+      <div class="p-field p-col-12 p-md-12 " *ngIf="isNew">
+        <button pButton pRipple type="button" label="שמירה והוספת מגע נוסף" class="p-button-outlined" (click)="onSubmit(true)"></button>
       </div>
     </div>
   </div>
